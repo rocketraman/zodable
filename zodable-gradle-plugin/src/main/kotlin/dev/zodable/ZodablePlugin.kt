@@ -18,7 +18,7 @@ abstract class ZodablePlugin : Plugin<Project> {
     @get:Inject
     abstract val execOperations: ExecOperations
 
-    private val zodableVersion = "1.7.4"
+    private val zodableVersion = "1.7.4.iblum-1"
 
     override fun apply(project: Project) {
         val outputPath = project.file("build/zodable")
@@ -207,7 +207,7 @@ abstract class ZodablePlugin : Plugin<Project> {
                         listOf(
                             pythonExec, "-c", Files.generatePyProjectToml(
                                 extension.packageName.get(),
-                                extension.packageVersion.get(),
+                                extension.packageVersion.get().replace(".iblum-1", ".dev1"),
                             )
                         )
                     ),
