@@ -6,7 +6,7 @@ plugins {
 
 mavenPublishing {
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
+    //signAllPublications()
     pom {
         name.set("zodable-annotations")
         description.set("Annotations for Zodable Gradle plugin.")

@@ -6,9 +6,30 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
+publishing {
+    repositories {
+        val devhausRepoUser: String by project
+        val devhausRepoPassword: String by project
+
+        maven {
+            url = if (version.toString().endsWith("-SNAPSHOT")) {
+                uri("https://repo.devhaus.com/repository/maven-snapshots/")
+            } else {
+                uri("https://repo.devhaus.com/repository/maven-releases/")
+            }
+
+            name = "devhaus"
+            credentials {
+                username = devhausRepoUser
+                password = devhausRepoPassword
+            }
+        }
+    }
+}
+
 mavenPublishing {
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
+    //signAllPublications()
     pom {
         name.set("zodable-ksp-processor")
         description.set("KSP processor for Zodable Gradle plugin.")
